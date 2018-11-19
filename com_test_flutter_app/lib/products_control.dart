@@ -6,15 +6,21 @@ class ProductControl extends StatelessWidget {
   ProductControl(this.handler);
 
   @override
-    Widget build(BuildContext context) {
-      return Container(
-          margin: EdgeInsets.all(10),
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+            child: Center(
+                child: Container(
+          margin: EdgeInsets.symmetric(vertical: 15),
           child: RaisedButton(
-            color: Theme.of(context).primaryColor,
+              color: Theme.of(context).primaryColor,
               child: Text("Add"),
               onPressed: () {
                 handler();
               }),
-        );
-    }
+        ))),
+      ],
+    );
+  }
 }
