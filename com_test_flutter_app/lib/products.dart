@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './Home/product_detail.dart';
+import './pages/product_detail.dart';
 
 class Products extends StatelessWidget {
   final List<String> products;
@@ -19,11 +19,16 @@ class Products extends StatelessWidget {
                   ),
                   Text(products[index]),
                   ButtonBar(
+                    alignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
                       FlatButton(
-                        child: Text("Details"),
-                        onPressed: () => Navigator.push(context, MaterialPageRoute(builder:(BuildContext contex) => DetailPage()))
-                      )
+                          child: Text("Details"),
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext contex) =>
+                                      DetailPage()))),
                     ],
                   )
                 ],
