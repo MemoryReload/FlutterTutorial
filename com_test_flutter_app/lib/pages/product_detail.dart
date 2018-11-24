@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatelessWidget {
+
+  final String title;
+  final String imageURL;
+
+  DetailPage(this.title, this.imageURL);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,18 +16,18 @@ class DetailPage extends StatelessWidget {
         body: Column(
           children: <Widget>[
             Image(
-              image: AssetImage("assets/food.jpg"),
+              image: AssetImage(imageURL),
             ),
             Container(
               padding: EdgeInsets.all(10),
-              child: Text("product"),
+              child: Text(title),
             ),
             Container(
               padding: EdgeInsets.all(10),
               child: RaisedButton(
-                child: Text("goBack"),
+                child: Text("Delete"),
                 color: Theme.of(context).primaryColor,
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => Navigator.pop(context,true),
               ),
             ),
           ],

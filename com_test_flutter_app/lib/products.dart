@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import "dart:async";
 
 import './pages/product_detail.dart';
 
 class Products extends StatelessWidget {
-  final List<String> products;
+  final List<Map<String, String>> products;
 
   Products([this.products = const []]);
 
@@ -15,9 +16,9 @@ class Products extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Image(
-                    image: AssetImage("assets/food.jpg"),
+                    image: AssetImage(products[index]["image"]),
                   ),
-                  Text(products[index]),
+                  Text(products[index]["title"]),
                   ButtonBar(
                     alignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
@@ -25,10 +26,17 @@ class Products extends StatelessWidget {
                       FlatButton(
                           child: Text("Details"),
                           onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext contex) =>
-                                      DetailPage()))),
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext contex) =>
+                                              DetailPage(
+                                                  products[index]["title"],
+                                                  products[index]["image"])))
+                                  .then((result) {
+                                if (result == true) {
+                                  products.removeAt(index);
+                                }
+                              })),
                     ],
                   )
                 ],
