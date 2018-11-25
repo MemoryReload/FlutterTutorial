@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import "dart:async";
 
-import './pages/product_detail.dart';
+import './pages/product_page.dart';
 
 class Products extends StatelessWidget {
   final List<Map<String, String>> products;
@@ -28,12 +27,12 @@ class Products extends StatelessWidget {
                           onPressed: () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (BuildContext contex) =>
+                                          builder: (BuildContext context) =>
                                               DetailPage(
                                                   products[index]["title"],
                                                   products[index]["image"])))
                                   .then((result) {
-                                if (result == true) {
+                                if (result) {
                                   products.removeAt(index);
                                 }
                               })),
