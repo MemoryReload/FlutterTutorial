@@ -11,9 +11,7 @@ class DetailPage extends StatelessWidget {
     return WillPopScope(
         onWillPop: () {
           Navigator.pop(context, false);
-           return Future((){
-             return false;
-           });
+          return Future.value(false);
         },
         child: Scaffold(
             appBar: AppBar(
