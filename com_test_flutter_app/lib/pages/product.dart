@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class DetailPage extends StatelessWidget {
+class ProductPage extends StatelessWidget {
   final String title;
   final String imageURL;
 
-  DetailPage(this.title, this.imageURL);
+  ProductPage(this.title, this.imageURL);
 
   @override
   Widget build(BuildContext context) {
