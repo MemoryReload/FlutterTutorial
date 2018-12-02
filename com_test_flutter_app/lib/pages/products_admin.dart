@@ -30,15 +30,15 @@ class ProductManagePage extends StatelessWidget {
           title: Text("Product Manage"),
           bottom: TabBar(
             tabs: <Widget>[
+              Tab(text: "Create products",icon: Icon(Icons.create),),
               Tab(text: "My products",icon:Icon(Icons.list) ,),
-              Tab(text: "Create products",icon: Icon(Icons.create),)
             ],
           ),
         ),
         body: TabBarView(
           children: <Widget>[
+            ProductsEditPage(),
             ProductsListPage(),
-            ProductsEditPage()
           ],
         ),
       ),

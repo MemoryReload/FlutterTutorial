@@ -5,7 +5,11 @@ class ProductsEditPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("Edit products"),
+        child: RaisedButton(
+          child: Text("Save"),
+          onPressed: () => showModalBottomSheet(
+              context: context, builder: (BuildContext context) => Center(child: Text("This is a Modal!"),)),
+        ),
       ),
     );
   }
