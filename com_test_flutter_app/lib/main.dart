@@ -21,7 +21,7 @@ class MyApp extends StatefulWidget {
 }
 class _MyAppState extends State<MyApp>{
 
-  List <Map<String,String>> _products = [];
+  List <Map<String,dynamic>> _products = [];
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +33,9 @@ class _MyAppState extends State<MyApp>{
           accentColor: Colors.deepPurple,
         ),
         routes: {
-          "/": (BuildContext context) => ProductsPage(_products,addProduct,deleteProduct),
+          "/": (BuildContext context) => ProductsPage(_products,deleteProduct),
           "/admin": (BuildContext contxt) =>
-                              ProductManagePage(),
+                              ProductManagePage(addProduct),
         },
         onGenerateRoute: (RouteSettings settings){
           List<String> pathElements = settings.name.split("/");
@@ -57,10 +57,10 @@ class _MyAppState extends State<MyApp>{
         );
   }
 
-  void addProduct() {
+  void addProduct(Map<String,dynamic> product) {
     setState(() {
       _products
-          .add({"title": "Advanced food tester", "image": "assets/food.jpg"});
+          .add(product);
     });
   }
 
