@@ -19,48 +19,45 @@ class MyApp extends StatefulWidget {
     return _MyAppState();
   }
 }
-class _MyAppState extends State<MyApp>{
 
-  List <Map<String,dynamic>> _products = [];
+class _MyAppState extends State<MyApp> {
+  List<Map<String, dynamic>> _products = [];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        // debugShowMaterialGrid: true,
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.deepOrange,
-          accentColor: Colors.deepPurple,
-        ),
-        routes: {
-          "/": (BuildContext context) => ProductsPage(_products,deleteProduct),
-          "/admin": (BuildContext contxt) =>
-                              ProductManagePage(addProduct),
-        },
-        onGenerateRoute: (RouteSettings settings){
-          List<String> pathElements = settings.name.split("/");
-          if (pathElements[0].length != 0) return null;
-          if (pathElements[1] == "products") {
-            int index = int.parse(pathElements[2]);
-            return MaterialPageRoute<bool>(
-                                          builder: (BuildContext context) =>
-                                              ProductPage(
-                                                  _products[index]["title"],
-                                                  _products[index]["image"]));
-          }
-          return null;
-        },
-        onUnknownRoute: (RouteSettings settings){
-            return MaterialPageRoute<bool>(
-                                          builder: (BuildContext context) => AuthPage());
-          },
-        );
+      // debugShowMaterialGrid: true,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.deepOrange,
+        accentColor: Colors.deepPurple,
+      ),
+      routes: {
+        "/": (BuildContext context) => AuthPage(),
+        "/products": (BuildContext context) => ProductsPage(_products, deleteProduct),
+        "/admin": (BuildContext context) => ProductManagePage(addProduct),
+      },
+      onGenerateRoute: (RouteSettings settings) {
+        List<String> pathElements = settings.name.split("/");
+        if (pathElements[0].length != 0) return null;
+        if (pathElements[1] == "products") {
+          int index = int.parse(pathElements[2]);
+          return MaterialPageRoute<bool>(
+              builder: (BuildContext context) => ProductPage(
+                  _products[index]["title"], _products[index]["image"]));
+        }
+        return null;
+      },
+      onUnknownRoute: (RouteSettings settings) {
+        return MaterialPageRoute<bool>(
+            builder: (BuildContext context) => AuthPage());
+      },
+    );
   }
 
-  void addProduct(Map<String,dynamic> product) {
+  void addProduct(Map<String, dynamic> product) {
     setState(() {
-      _products
-          .add(product);
+      _products.add(product);
     });
   }
 
@@ -69,5 +66,4 @@ class _MyAppState extends State<MyApp>{
       _products.removeAt(index);
     });
   }
-
 }

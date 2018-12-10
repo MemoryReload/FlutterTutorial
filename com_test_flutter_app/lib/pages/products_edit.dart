@@ -51,7 +51,7 @@ class _ProductsEditPageState extends State<ProductsEditPage> {
                     "image":"assets/food.jpg"
                   };
                   widget.addProduct(product);
-                  Navigator.pushReplacementNamed(context, "/");  
+                  Navigator.pushReplacementNamed(context, "/products");  
                 },)
           ],
         ));
