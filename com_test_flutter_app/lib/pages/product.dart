@@ -6,6 +6,35 @@ class ProductPage extends StatelessWidget {
 
   ProductPage(this.title, this.imageURL);
 
+  void _showWarningDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => WillPopScope(
+              onWillPop: () {
+                Navigator.pop(context, false);
+                return Future.value(false);
+              },
+              child: AlertDialog(
+                title: Text("Are you sure?"),
+                content: Text("This action cannot be undone!"),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text("Cancle"),
+                    onPressed: () => Navigator.pop(context, false),
+                  ),
+                  FlatButton(
+                    child: Text("Continue"),
+                    onPressed: () => Navigator.pop(context, true),
+                  ),
+                ],
+              ),
+            )).then((onValue) {
+      if (onValue == true) {
+        Navigator.pop(context, true);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -31,37 +60,7 @@ class ProductPage extends StatelessWidget {
                   child: RaisedButton(
                     child: Text("Delete"),
                     color: Theme.of(context).primaryColor,
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) => WillPopScope(
-                                onWillPop: () {
-                                  Navigator.pop(context, false);
-                                  return Future.value(false);
-                                },
-                                child: AlertDialog(
-                                  title: Text("Are you sure?"),
-                                  content:
-                                      Text("This action cannot be undone!"),
-                                  actions: <Widget>[
-                                    FlatButton(
-                                      child: Text("Cancle"),
-                                      onPressed: () =>
-                                          Navigator.pop(context, false),
-                                    ),
-                                    FlatButton(
-                                      child: Text("Continue"),
-                                      onPressed: () =>
-                                          Navigator.pop(context, true),
-                                    ),
-                                  ],
-                                ),
-                              )).then((onValue) {
-                        if (onValue == true) {
-                          Navigator.pop(context, true);
-                        }
-                      });
-                    },
+                    onPressed: () => _showWarningDialog(context),
                   ),
                 ),
               ],
