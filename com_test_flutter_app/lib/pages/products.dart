@@ -15,7 +15,7 @@ class ProductsPage extends StatelessWidget {
       drawer: Drawer(
         child: Column(
           children: <Widget>[
-            AppBar(
+             AppBar(
               automaticallyImplyLeading: false,
               title: Text("Choose"),
             ),

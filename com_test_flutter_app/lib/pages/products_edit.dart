@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ProductsEditPage extends StatefulWidget {
-
   final Function addProduct;
   ProductsEditPage(this.addProduct);
 
@@ -23,6 +22,7 @@ class _ProductsEditPageState extends State<ProductsEditPage> {
         child: Column(
           children: <Widget>[
             TextField(
+              autofocus: true,
               decoration: InputDecoration(labelText: "Product Name"),
               onChanged: (String text) {
                 _productName = text;
@@ -42,17 +42,30 @@ class _ProductsEditPageState extends State<ProductsEditPage> {
                 onChanged: (String text) {
                   _productPrice = double.parse(text);
                 }),
-                SizedBox(height: 16,),
-                RaisedButton(color: Theme.of(context).primaryColor, textColor: Colors.white ,child: Text("Save"), onPressed: (){
-                  Map <String, dynamic> product = {
-                    "title":_productName,
-                    "description":_productDescription,
-                    "price":_productPrice,
-                    "image":"assets/food.jpg"
-                  };
-                  widget.addProduct(product);
-                  Navigator.pushReplacementNamed(context, "/products");  
-                },)
+            SizedBox(
+              height: 16,
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                    color: Theme.of(context).primaryColor,
+                    textColor: Colors.white,
+                    child: Text("Save"),
+                    onPressed: () {
+                      Map<String, dynamic> product = {
+                        "title": _productName,
+                        "description": _productDescription,
+                        "price": _productPrice,
+                        "image": "assets/food.jpg"
+                      };
+                      widget.addProduct(product);
+                      Navigator.pushReplacementNamed(context, "/products");
+                    },
+                  ),
+                ),
+              ],
+            )
           ],
         ));
   }
