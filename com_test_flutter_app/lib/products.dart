@@ -24,17 +24,18 @@ class Products extends StatelessWidget {
                       children: <Widget>[
                         Text(products[index]["title"],
                             style: TextStyle(
-                                fontSize: 24,
+                                fontSize: 26,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "Condensed_Bold")),
                         SizedBox(
-                          width: 10,
+                          width: 8,
                         ),
                         Container(
-                          padding: EdgeInsets.all(5),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 6, vertical: 2.5),
                           decoration: BoxDecoration(
                               color: Theme.of(context).accentColor,
-                              borderRadius: BorderRadius.circular(4)),
+                              borderRadius: BorderRadius.circular(5)),
                           child: Text(
                             "\$${products[index]["price"].toString()}",
                             style: TextStyle(color: Colors.white),
@@ -42,6 +43,18 @@ class Products extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+                  DecoratedBox(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                      child: Text("Union Square, Los Angels"),
+                    ),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: Colors.grey,
+                            style: BorderStyle.solid,
+                            width: 1),
+                        borderRadius: BorderRadius.circular(5)),
                   ),
                   ButtonBar(
                     alignment: MainAxisAlignment.center,
