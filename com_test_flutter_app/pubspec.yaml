@@ -53,9 +53,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Condensed_Bold
+    - family: Oswald
       fonts:
-        - asset: fonts/DIN_Condensed_Bold.ttf
+        - asset: fonts/Oswald-Bold.ttf
           weight: 700
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic

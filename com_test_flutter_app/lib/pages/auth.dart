@@ -18,7 +18,7 @@ class _AuthPageState extends State<AuthPage> {
         title: Text("Login"),
       ),
       body: Container(
-        padding: EdgeInsets.fromLTRB(16, 100, 16, 16),
+        padding: EdgeInsets.fromLTRB(16, 40, 16, 16),
         child: Column(
           children: <Widget>[
             TextField(
