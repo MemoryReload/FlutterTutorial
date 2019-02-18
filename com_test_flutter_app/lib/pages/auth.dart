@@ -61,20 +61,14 @@ class _AuthPageState extends State<AuthPage> {
             SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text("Accept Terms"),
-                Switch(
-                  value: accepted,
-                  onChanged: (bool value) {
-                    setState(() {
-                      accepted = value;
-                    });
-                  },
-                )
-              ],
-            ),
+            SwitchListTile(
+                title: const Text("Accept Terms"),
+                value: accepted,
+                onChanged: (bool value) {
+                  setState(() {
+                    accepted = value;
+                  });
+                }),
             SizedBox(
               height: 20,
             ),
