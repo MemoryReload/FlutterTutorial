@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+// import 'package:flutter/rendering.dart';
 
 import './pages/auth.dart';
 import './pages/products.dart';
@@ -7,7 +7,7 @@ import './pages/products_admin.dart';
 import './pages/product.dart';
 
 void main(List<String> args) {
-  debugPaintSizeEnabled = true;
+  // debugPaintSizeEnabled = true;
   // debugPaintBaselinesEnabled = true;
   // debugPaintPointersEnabled = true;
   runApp(MyApp());
@@ -34,7 +34,8 @@ class _MyAppState extends State<MyApp> {
       ),
       routes: {
         "/": (BuildContext context) => AuthPage(),
-        "/products": (BuildContext context) => ProductsPage(_products, deleteProduct),
+        "/products": (BuildContext context) =>
+            ProductsPage(_products, deleteProduct),
         "/admin": (BuildContext context) => ProductManagePage(addProduct),
       },
       onGenerateRoute: (RouteSettings settings) {
@@ -43,8 +44,7 @@ class _MyAppState extends State<MyApp> {
         if (pathElements[1] == "products") {
           int index = int.parse(pathElements[2]);
           return MaterialPageRoute<bool>(
-              builder: (BuildContext context) => ProductPage(
-                  _products[index]["title"], _products[index]["image"]));
+              builder: (BuildContext context) => ProductPage(_products[index]));
         }
         return null;
       },

@@ -1,39 +1,40 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatelessWidget {
-  final String title;
-  final String imageURL;
+  final Map<String, dynamic> product;
 
-  ProductPage(this.title, this.imageURL);
+  ProductPage(this.product);
 
-  void _showWarningDialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) => WillPopScope(
-              onWillPop: () {
-                Navigator.pop(context, false);
-                return Future.value(false);
-              },
-              child: AlertDialog(
-                title: Text("Are you sure?"),
-                content: Text("This action cannot be undone!"),
-                actions: <Widget>[
-                  FlatButton(
-                    child: Text("Cancle"),
-                    onPressed: () => Navigator.pop(context, false),
-                  ),
-                  FlatButton(
-                    child: Text("Continue"),
-                    onPressed: () => Navigator.pop(context, true),
-                  ),
-                ],
-              ),
-            )).then((onValue) {
-      if (onValue == true) {
-        Navigator.pop(context, true);
-      }
-    });
-  }
+  // void _showWarningDialog(BuildContext context) {
+  //   showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) => WillPopScope(
+  //             onWillPop: () {
+  //               Navigator.pop(context, false);
+  //               return Future.value(false);
+  //             },
+  //             child: AlertDialog(
+  //               title: Text("Are you sure?"),
+  //               content: Text("This action cannot be undone!"),
+  //               actions: <Widget>[
+  //                 FlatButton(
+  //                   child: Text("Cancle"),
+  //                   onPressed: () => Navigator.pop(context, false),
+  //                 ),
+  //                 FlatButton(
+  //                   child: Text("Continue"),
+  //                   onPressed: () => Navigator.pop(context, true),
+  //                 ),
+  //               ],
+  //             ),
+  //           )).then((onValue) {
+  //     if (onValue == true) {
+  //       Navigator.pop(context, true);
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -48,20 +49,37 @@ class ProductPage extends StatelessWidget {
             ),
             body: Column(
               children: <Widget>[
-                Image(
-                  image: AssetImage(imageURL),
-                ),
                 Container(
-                  padding: EdgeInsets.all(10),
-                  child: Text(title),
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  child: RaisedButton(
-                    child: Text("Delete"),
-                    color: Theme.of(context).primaryColor,
-                    onPressed: () => _showWarningDialog(context),
+                  child: Image(
+                    image: AssetImage(product["image"]),
                   ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    product["title"],
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontFamily: "Oswald",
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).primaryColor),
+                  ),
+                ),
+                Expanded(
+                  child: ListView(children: <Widget>[
+                    ListTile(
+                      title: Text("Price"),
+                      subtitle: Text(product["price"].toString()),
+                    ),
+                    ListTile(
+                      title: Text("Adress"),
+                      subtitle: Text("Union Square, Los Angels"),
+                    ),
+                    ListTile(
+                      title: Text("Description"),
+                      subtitle: Text(product["description"]),
+                    ),
+                  ]),
                 ),
               ],
             )));

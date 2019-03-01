@@ -60,8 +60,9 @@ class Products extends StatelessWidget {
                     alignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      FlatButton(
-                          child: Text("Details"),
+                      IconButton(
+                          icon: Icon(Icons.info),
+                          color: Theme.of(context).accentColor,
                           onPressed: () =>
                               Navigator.pushNamed(context, "/products/$index")
                                   .then((result) {
@@ -69,6 +70,11 @@ class Products extends StatelessWidget {
                                   deleteProduct(index);
                                 }
                               })),
+                      IconButton(
+                        icon: Icon(Icons.favorite_border),
+                        color: Theme.of(context).primaryColor,
+                        onPressed: () => {},
+                      )
                     ],
                   )
                 ],
