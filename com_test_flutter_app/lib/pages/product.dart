@@ -7,35 +7,6 @@ class ProductPage extends StatelessWidget {
 
   ProductPage(this.product);
 
-  // void _showWarningDialog(BuildContext context) {
-  //   showDialog(
-  //       context: context,
-  //       builder: (BuildContext context) => WillPopScope(
-  //             onWillPop: () {
-  //               Navigator.pop(context, false);
-  //               return Future.value(false);
-  //             },
-  //             child: AlertDialog(
-  //               title: Text("Are you sure?"),
-  //               content: Text("This action cannot be undone!"),
-  //               actions: <Widget>[
-  //                 FlatButton(
-  //                   child: Text("Cancle"),
-  //                   onPressed: () => Navigator.pop(context, false),
-  //                 ),
-  //                 FlatButton(
-  //                   child: Text("Continue"),
-  //                   onPressed: () => Navigator.pop(context, true),
-  //                 ),
-  //               ],
-  //             ),
-  //           )).then((onValue) {
-  //     if (onValue == true) {
-  //       Navigator.pop(context, true);
-  //     }
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -48,6 +19,7 @@ class ProductPage extends StatelessWidget {
               title: Text("Details"),
             ),
             body: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
                   child: Image(
@@ -65,22 +37,15 @@ class ProductPage extends StatelessWidget {
                         color: Theme.of(context).primaryColor),
                   ),
                 ),
-                Expanded(
-                  child: ListView(children: <Widget>[
-                    ListTile(
-                      title: Text("Price"),
-                      subtitle: Text(product["price"].toString()),
-                    ),
-                    ListTile(
-                      title: Text("Adress"),
-                      subtitle: Text("Union Square, Los Angels"),
-                    ),
-                    ListTile(
-                      title: Text("Description"),
-                      subtitle: Text(product["description"]),
-                    ),
-                  ]),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(product["price"].toString()),
+                    Text("|"),
+                    Text("Union Square, Los Angels"),
+                  ],
                 ),
+                Text(product["description"]),
               ],
             )));
   }
