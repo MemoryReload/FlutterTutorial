@@ -18,35 +18,76 @@ class ProductPage extends StatelessWidget {
             appBar: AppBar(
               title: Text("Details"),
             ),
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  child: Image(
-                    image: AssetImage(product["image"]),
+            body: Container(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Material(
+                    clipBehavior: Clip.antiAlias,
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Image(
+                      image: AssetImage(product["image"]),
+                    ),
                   ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    product["title"],
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontFamily: "Oswald",
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Text(
+                      product["title"],
+                      style: TextStyle(
+                          fontSize: 26,
+                          fontFamily: "Oswald",
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).primaryColor),
+                    ),
                   ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Text(product["price"].toString()),
-                    Text("|"),
-                    Text("Union Square, Los Angels"),
-                  ],
-                ),
-                Text(product["description"]),
-              ],
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text(
+                        "Union Square, Los Angels",
+                        style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                            fontSize: 16,
+                            fontFamily: "Oswald",
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "|",
+                        style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                            fontSize: 16,
+                            fontFamily: "Oswald",
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "\$"+product["price"].toString(),
+                        style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                            fontSize: 16,
+                            fontFamily: "Oswald",
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    child: Text(product["description"],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            height: 1.2, //0.2倍行距
+                            color: Colors.grey,
+                            fontSize: 18)),
+                    padding: EdgeInsets.only(top: 20),
+                  ),
+                ],
+              ),
             )));
   }
 }
