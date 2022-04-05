@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/answer.dart';
 import './question.dart';
+import './answer.dart';
 
 // void main(List<String> args) {
 //   runApp(const MyApp());
@@ -26,35 +28,36 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      'What\'s your favourite color?',
-      'What\'s your favourite animal?'
+    const questions = [
+      {
+        'question': 'What\'s your favourite color?',
+        'answers': ["Answer 1", "Answer 2", "Answer 3"]
+      },
+      {
+        'question': 'What\'s your favourite animal?',
+        'answers': ["Answer 1", "Answer 2", "Answer 3", "Answer 4"]
+      },
     ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text("MyApp"),
         ),
-        body: Column(
-          children: [
-            Question(questions.elementAt(_questionIndex)),
-            ElevatedButton(
-              onPressed: _answerQuestion,
-              child: const Text('Answer 0'),
-            ),
-            ElevatedButton(
-              onPressed: () => print('press answer1'),
-              child: const Text('Answer 1'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                print('press');
-                print('answer2');
-              },
-              child: const Text('Answer 2'),
-            ),
-          ],
-        ),
+        body: _questionIndex < questions.length
+            ? Column(
+                children: [
+                  Question(questions[_questionIndex]['question'] as String),
+                  ...(questions[_questionIndex]['answers'] as List<String>)
+                      .map((e) => Answer(
+                            text: e,
+                            callback: _answerQuestion,
+                          ))
+                      .toList()
+                ],
+              )
+            : const Center(
+                child: Text('you\'ve done it!'),
+              ),
       ),
     );
   }
