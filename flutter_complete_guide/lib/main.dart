@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/answer.dart';
-import './question.dart';
-import './answer.dart';
+import 'quiz.dart';
 
 // void main(List<String> args) {
 //   runApp(const MyApp());
@@ -18,24 +17,43 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var _totalScore = 0;
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+    _totalScore += score;
     setState(() {
       _questionIndex += 1;
     });
-    print('press answer0');
   }
 
   @override
   Widget build(BuildContext context) {
-    const questions = [
+    const _questions = [
       {
         'question': 'What\'s your favourite color?',
-        'answers': ["Answer 1", "Answer 2", "Answer 3"]
+        'answers': [
+          {"anwser": "Answer 1", "score": 8},
+          {"anwser": "Answer 2", "score": 6},
+          {"anwser": "Answer 3", "score": 5}
+        ]
       },
       {
         'question': 'What\'s your favourite animal?',
-        'answers': ["Answer 1", "Answer 2", "Answer 3", "Answer 4"]
+        'answers': [
+          {"anwser": "Answer 1", "score": 4},
+          {"anwser": "Answer 2", "score": 8},
+          {"anwser": "Answer 3", "score": 7},
+          {"anwser": "Answer 3", "score": 3}
+        ]
+      },
+      {
+        'question': 'What\'s your favourite sport?',
+        'answers': [
+          {"anwser": "Answer 1", "score": 5},
+          {"anwser": "Answer 2", "score": 6},
+          {"anwser": "Answer 3", "score": 2},
+          {"anwser": "Answer 3", "score": 1}
+        ]
       },
     ];
     return MaterialApp(
@@ -43,18 +61,12 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text("MyApp"),
         ),
-        body: _questionIndex < questions.length
-            ? Column(
-                children: [
-                  Question(questions[_questionIndex]['question'] as String),
-                  ...(questions[_questionIndex]['answers'] as List<String>)
-                      .map((e) => Answer(
-                            text: e,
-                            callback: _answerQuestion,
-                          ))
-                      .toList()
-                ],
-              )
+        body: _questionIndex < _questions.length
+            ? Quiz(
+                question: _questions[_questionIndex]["question"] as String,
+                answers: _questions[_questionIndex]['answers']
+                    as List<Map<String, Object>>,
+                callback: _answerQuestion)
             : const Center(
                 child: Text('you\'ve done it!'),
               ),
