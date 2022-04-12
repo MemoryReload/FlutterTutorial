@@ -64,6 +64,7 @@ build/
 **/ios/Runner/GeneratedPluginRegistrant.*
 **/ios/Index
 **/ios/Build
+**/ios/**/flutter_export_environment.sh
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
