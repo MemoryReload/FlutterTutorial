@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import './transaction.dart';
 
 void main() {
   runApp(const MyApp());
@@ -50,19 +49,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+  final List<Transaction> transactions = [
+    Transaction(
+        id: "t1", name: "New Shoes", amount: 69.99, date: DateTime.now()),
+    Transaction(
+        id: "t1",
+        name: "Weekly Groceries",
+        amount: 102.72,
+        date: DateTime.now()),
+  ];
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -78,21 +73,59 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 200,
               child: Card(
                 color: Colors.blue,
                 child: Text('Chart'),
               ),
             ),
-            Expanded(
-              child: Card(
-                color: Colors.red,
-                child: Text('Transactions'),
-              ),
+            Column(
+              children: transactions.map((s) {
+                return Card(
+                  child: Row(children: [
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 15),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: Colors.purple,
+                            width: 2,
+                            style: BorderStyle.solid),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(2)),
+                      ),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        s.amount.toString(),
+                        style: const TextStyle(
+                            color: Colors.purple,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          s.name,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          s.date.toString(),
+                          style: const TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    )
+                  ]),
+                );
+              }).toList(),
             )
           ]), // This trailing comma makes auto-formatting nicer for build methods.
     );
