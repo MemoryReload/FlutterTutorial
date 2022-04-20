@@ -32,10 +32,30 @@ class Result extends StatelessWidget {
           onPressed: resetHandler,
           child: const Text(
             "Restart the quiz!",
-            style: TextStyle(color: Colors.blue),
           ),
+          // style: TextButton.styleFrom(
+          //     primary: Colors.blue,
+          //     splashFactory: NoSplash.splashFactory,
+          //     textStyle:
+          //         const TextStyle(fontSize: 14, fontWeight: FontWeight.normal)),
+          style: makeBtnStyle(),
         ),
       ],
+    );
+  }
+
+  ButtonStyle makeBtnStyle() {
+    return ButtonStyle(
+      foregroundColor: MaterialStateProperty.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.pressed)) return Colors.pink;
+          return Colors.blue;
+        },
+      ),
+      splashFactory: NoSplash.splashFactory,
+      overlayColor: MaterialStateProperty.all(Colors.transparent),
+      textStyle: MaterialStateProperty.all(
+          const TextStyle(fontSize: 14, fontWeight: FontWeight.normal)),
     );
   }
 }
