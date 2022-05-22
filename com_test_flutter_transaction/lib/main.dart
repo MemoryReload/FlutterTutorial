@@ -58,19 +58,18 @@ class MyHomePage extends StatelessWidget {
         // the App.build method, and use it to set our appbar title.
         title: Text(title),
       ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(
-              // height: ,
-              child: Card(
-                color: Colors.blue,
-                child: Text('Chart'),
-              ),
-            ),
-            const Transactions(),
-          ]), // This trailing comma makes auto-formatting nicer for build methods.
+      body: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: const [
+                 Card(
+                  color: Colors.blue,
+                  child: Text('Chart'),
+                ),
+              Transactions(),
+            ]),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
