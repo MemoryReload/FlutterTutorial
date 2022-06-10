@@ -14,20 +14,53 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+      title: 'Personal Expenses',
+      // theme: ThemeData(
+      //   primarySwatch: Colors.purple,
+      //   accentColor: Colors.amber,
+      //   fontFamily: 'Quicksand',
+      //   textTheme: Theme.of(context).textTheme.copyWith(
+      //         titleLarge: const TextStyle(
+      //           fontFamily: 'OpenSans',
+      //           fontSize: 18,
+      //           fontWeight: FontWeight.bold,
+      //         ),
+      //       ),
+      //   appBarTheme: const AppBarTheme(
+      //     titleTextStyle: TextStyle(
+      //       fontFamily: 'OpenSans',
+      //       fontSize: 20,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      // ),
+      theme: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.purple,
+          secondary: Colors.amber,
+        ),
+        textTheme: Theme.of(context)
+            .textTheme
+            .apply(
+              fontFamily: 'Quicksand',
+            )
+            .copyWith(
+              titleLarge: const TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+      ).copyWith(
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo'),
+      home: const MyHomePage(title: 'Personal Expenses'),
     );
   }
 }
