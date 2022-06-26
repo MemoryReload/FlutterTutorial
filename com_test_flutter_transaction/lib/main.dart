@@ -1,3 +1,4 @@
+import 'package:com_test_flutter_transaction/widgets/chart.dart';
 import 'package:com_test_flutter_transaction/widgets/new_transaction.dart';
 import 'package:flutter/material.dart';
 import '../widgets/transaction_list.dart';
@@ -86,12 +87,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> transactions = [
     Transaction(
-        id: "t1", name: "New Shoes", amount: 69.99, date: DateTime.now()),
+        id: "t1", name: "New Shoes", amount: 69.99, date: DateTime.now().subtract(const Duration(days: 1))),
     Transaction(
         id: "t1",
         name: "Weekly Groceries",
         amount: 102.72,
-        date: DateTime.now()),
+        date: DateTime.now().subtract(const Duration(days: 2))),
   ];
 
   void _addTransaction(String title, double amount) {
@@ -138,10 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Card(
-                color: Colors.blue,
-                child: Text('Chart'),
-              ),
+              Chart(recentTrasactions: transactions ),
               TransactionList(transactions: transactions),
             ]),
       ),
