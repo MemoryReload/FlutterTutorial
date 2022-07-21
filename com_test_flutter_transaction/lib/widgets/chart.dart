@@ -41,14 +41,15 @@ class Chart extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: groupedTransactionValues.map((data) {
             return Flexible(
               fit: FlexFit.tight,
               child: ChartBar(
                 data['day'] as String,
                 data['amount'] as double,
-                totalSpending == 0 ? 0 : (data['amount'] as double) / totalSpending,
+                totalSpending == 0
+                    ? 0
+                    : (data['amount'] as double) / totalSpending,
               ),
             );
           }).toList(),
