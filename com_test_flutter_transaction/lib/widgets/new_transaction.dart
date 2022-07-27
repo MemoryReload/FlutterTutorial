@@ -25,6 +25,8 @@ class _NewTransactionState extends State<NewTransaction> {
     Navigator.of(context).pop();
   }
 
+  void _showDatePicker() {}
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -43,7 +45,23 @@ class _NewTransactionState extends State<NewTransaction> {
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             onSubmitted: (_) => submit(),
           ),
-          ElevatedButton(onPressed: submit, child: const Text("Submit")),
+          SizedBox(
+            height: 70,
+            child: Row(
+              children: [
+                const Text("No Date Chosen!"),
+                TextButton(
+                  onPressed: () => _showDatePicker,
+                  child: const Text(
+                    "Choose Date",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
+            ),
+          ),
+          ElevatedButton(
+              onPressed: submit, child: const Text("Add Transaction")),
         ],
       ),
     );

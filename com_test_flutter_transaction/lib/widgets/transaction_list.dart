@@ -31,7 +31,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   title: Text(
                     transactions[index].name,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   subtitle: Text(
                     // 'Weekly Groceries',
