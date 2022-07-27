@@ -87,7 +87,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> transactions = [
     Transaction(
-        id: "t1", name: "New Shoes", amount: 69.99, date: DateTime.now().subtract(const Duration(days: 1))),
+        id: "t1",
+        name: "New Shoes",
+        amount: 69.99,
+        date: DateTime.now().subtract(const Duration(days: 1))),
     Transaction(
         id: "t1",
         name: "Weekly Groceries",
@@ -139,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Chart(recentTrasactions: transactions ),
+              Chart(recentTrasactions: transactions),
               TransactionList(transactions: transactions),
             ]),
       ),

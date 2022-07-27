@@ -13,41 +13,32 @@ class TransactionList extends StatelessWidget {
       height: 300,
       child: ListView.builder(
           itemBuilder: (context, index) => Card(
-                child: Row(children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 15),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Theme.of(context).primaryColor,
-                          width: 2,
-                          style: BorderStyle.solid),
-                      borderRadius: const BorderRadius.all(Radius.circular(2)),
-                    ),
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      "\$${transactions[index].amount.toStringAsFixed(2)}",
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+                elevation: 5,
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Theme.of(context).primaryColor,
+                    radius: 30,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: FittedBox(
+                        child: Text(
+                          "\$${transactions[index].amount.toStringAsFixed(2)}",
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        transactions[index].name,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      Text(
-                        // 'Weekly Groceries',
-                        DateFormat.yMMMd().format(transactions[index].date),
-                        style: const TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  )
-                ]),
+                  title: Text(
+                    transactions[index].name,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  subtitle: Text(
+                    // 'Weekly Groceries',
+                    DateFormat.yMMMd().format(transactions[index].date),
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                ),
               ),
           itemCount: transactions.length),
     );
