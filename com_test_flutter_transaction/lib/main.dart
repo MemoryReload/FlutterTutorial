@@ -98,13 +98,13 @@ class _MyHomePageState extends State<MyHomePage> {
         date: DateTime.now().subtract(const Duration(days: 2))),
   ];
 
-  void _addTransaction(String title, double amount) {
+  void _addTransaction(String title, double amount, DateTime date) {
     setState(() {
       transactions.add(Transaction(
           id: DateTime.now().toString(),
           name: title,
           amount: amount,
-          date: DateTime.now()));
+          date: date));
     });
   }
 
