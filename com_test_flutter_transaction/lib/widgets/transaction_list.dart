@@ -4,14 +4,25 @@ import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
-  const TransactionList({Key? key, required this.transactions})
+  final Function? deleteCallback;
+  const TransactionList(
+      {Key? key, required this.transactions, this.deleteCallback})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
-      child: ListView.builder(
+    return Container(
+      alignment: Alignment.center,
+      height: 600,
+      child: listBody(),
+    );
+  }
+
+  Widget listBody() {
+    if (transactions.isEmpty) {
+      return const Text("No Transactions!");
+    } else {
+      return ListView.builder(
           itemBuilder: (context, index) => Card(
                 margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
                 elevation: 5,
@@ -38,9 +49,18 @@ class TransactionList extends StatelessWidget {
                     DateFormat.yMMMd().format(transactions[index].date),
                     style: const TextStyle(color: Colors.grey),
                   ),
+                  trailing: IconButton(
+                    onPressed: () {
+                      deleteCallback!(transactions[index].id);
+                    },
+                    icon: Icon(
+                      Icons.delete,
+                      color: Theme.of(context).errorColor,
+                    ),
+                  ),
                 ),
               ),
-          itemCount: transactions.length),
-    );
+          itemCount: transactions.length);
+    }
   }
 }
