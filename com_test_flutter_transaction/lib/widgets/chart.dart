@@ -42,8 +42,7 @@ class Chart extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Row(
           children: groupedTransactionValues.map((data) {
-            return Flexible(
-              fit: FlexFit.tight,
+            return Expanded(
               child: ChartBar(
                 data['day'] as String,
                 data['amount'] as double,

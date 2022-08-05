@@ -120,28 +120,41 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    final appBar = AppBar(
+      // Here we take the value from the MyHomePage object that was created by
+      // the App.build method, and use it to set our appbar title.
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.add),
+          onPressed: () => {_startAddNewTransaction(context)},
+        ),
+      ],
+      title: Text(widget.title),
+    );
+
+    final contentHeight = MediaQuery.of(context).size.height -
+        appBar.preferredSize.height -
+        MediaQuery.of(context).padding.top -
+        MediaQuery.of(context).padding.bottom;
 
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => {_startAddNewTransaction(context)},
-          ),
-        ],
-        title: Text(widget.title),
-      ),
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Chart(recentTrasactions: transactions),
-              TransactionList(
-                transactions: transactions,
-                deleteCallback: _deleteTransaction,
+              SizedBox(
+                child: Chart(recentTrasactions: transactions),
+                height: contentHeight * 0.25,
+              ),
+              Container(
+                height: contentHeight * 0.75,
+                alignment: Alignment.center,
+                child: TransactionList(
+                  transactions: transactions,
+                  deleteCallback: _deleteTransaction,
+                ),
               ),
             ]),
       ),

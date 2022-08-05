@@ -11,14 +11,6 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      height: 600,
-      child: listBody(),
-    );
-  }
-
-  Widget listBody() {
     if (transactions.isEmpty) {
       return const Text("No Transactions!");
     } else {
