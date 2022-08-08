@@ -11,24 +11,24 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 20,
-            child: FittedBox(
-              child: Text(
-                '\$${spendingAmount.toStringAsFixed(0)}',
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Column(
+          children: [
+            SizedBox(
+              height: constraints.maxHeight * 0.15,
+              child: FittedBox(
+                child: Text(
+                  '\$${spendingAmount.toStringAsFixed(0)}',
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 4,
-          ),
-          Expanded(
-            child: SizedBox(
+            SizedBox(
+              height: constraints.maxHeight * 0.05,
+            ),
+            SizedBox(
               width: 10,
+              height: constraints.maxHeight * 0.6,
               child: Stack(
                   alignment: AlignmentDirectional.bottomCenter,
                   children: [
@@ -48,13 +48,18 @@ class ChartBar extends StatelessWidget {
                     )
                   ]),
             ),
-          ),
-          const SizedBox(
-            height: 4,
-          ),
-          Text(label)
-        ],
-      ),
+            SizedBox(
+              height: constraints.maxHeight * 0.05,
+            ),
+            SizedBox(
+              height: constraints.maxHeight * 0.15,
+              child: FittedBox(
+                child: Text(label),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
