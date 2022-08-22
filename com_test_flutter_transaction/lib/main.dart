@@ -93,6 +93,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> transactions = [];
+  bool _showChart = true;
 
   void _addTransaction(String title, double amount, DateTime date) {
     setState(() {
@@ -121,6 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -144,6 +147,15 @@ class _MyHomePageState extends State<MyHomePage> {
         MediaQuery.of(context).padding.top -
         MediaQuery.of(context).padding.bottom;
 
+    final transactionList = Container(
+      height: contentHeight * 0.75,
+      alignment: Alignment.center,
+      child: TransactionList(
+        transactions: transactions,
+        deleteCallback: _deleteTransaction,
+      ),
+    );
+
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -151,18 +163,34 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
-                child: Chart(recentTrasactions: transactions),
-                height: contentHeight * 0.25,
-              ),
-              Container(
-                height: contentHeight * 0.75,
-                alignment: Alignment.center,
-                child: TransactionList(
-                  transactions: transactions,
-                  deleteCallback: _deleteTransaction,
+              if (isLandscape)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Show Chart"),
+                    Switch(
+                      value: _showChart,
+                      onChanged: (value) {
+                        setState(() {
+                          _showChart = value;
+                        });
+                      },
+                    )
+                  ],
                 ),
-              ),
+              if (isLandscape)
+                _showChart
+                    ? SizedBox(
+                        child: Chart(recentTrasactions: transactions),
+                        height: contentHeight * 0.75,
+                      )
+                    : transactionList,
+              if (!isLandscape)
+                SizedBox(
+                  child: Chart(recentTrasactions: transactions),
+                  height: contentHeight * 0.25,
+                ),
+              if (!isLandscape) transactionList,
             ]),
       ),
       floatingActionButton: FloatingActionButton(
