@@ -1,10 +1,17 @@
 import 'package:com_test_flutter_transaction/widgets/chart.dart';
 import 'package:com_test_flutter_transaction/widgets/new_transaction.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 import '../widgets/transaction_list.dart';
 import '../models/transaction.dart';
 
 void main() {
+  // Lock the device orientations
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown,
+  // ]);
   runApp(const MyApp());
 }
 
