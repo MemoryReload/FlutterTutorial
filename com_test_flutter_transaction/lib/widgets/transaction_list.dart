@@ -37,19 +37,63 @@ class TransactionList extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   subtitle: Text(
-                    // 'Weekly Groceries',
                     DateFormat.yMMMd().format(transactions[index].date),
                     style: const TextStyle(color: Colors.grey),
                   ),
-                  trailing: IconButton(
-                    onPressed: () {
-                      deleteCallback!(transactions[index].id);
-                    },
-                    icon: Icon(
-                      Icons.delete,
-                      color: Theme.of(context).errorColor,
-                    ),
-                  ),
+                  trailing: MediaQuery.of(context).size.width > 500
+                      ? ElevatedButton.icon(
+                          onPressed: () {
+                            deleteCallback!(transactions[index].id);
+                          },
+                          icon: const Icon(
+                            Icons.delete,
+                          ),
+                          label: const Text("Delete"),
+                          style: ButtonStyle(
+                            elevation: MaterialStateProperty.all(0),
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.transparent),
+                            foregroundColor: MaterialStateProperty.all(
+                                Theme.of(context).errorColor),
+                            overlayColor:
+                                MaterialStateProperty.all(Colors.transparent),
+                          ),
+                        )
+                      // ElevatedButton(
+                      //     onPressed: () {
+                      //       deleteCallback!(transactions[index].id);
+                      //     },
+                      //     child: Row(
+                      //       mainAxisSize: MainAxisSize.min,
+                      //       children: const [
+                      //         Icon(
+                      //           Icons.delete,
+                      //         ),
+                      //         SizedBox(
+                      //           width: 8,
+                      //         ),
+                      //         Text("Delete"),
+                      //       ],
+                      //     ),
+                      //     style: ButtonStyle(
+                      //       elevation: MaterialStateProperty.all(0),
+                      //       backgroundColor:
+                      //           MaterialStateProperty.all(Colors.transparent),
+                      //       foregroundColor: MaterialStateProperty.all(
+                      //           Theme.of(context).errorColor),
+                      //       overlayColor:
+                      //           MaterialStateProperty.all(Colors.transparent),
+                      //     ),
+                      //   )
+                      : IconButton(
+                          onPressed: () {
+                            deleteCallback!(transactions[index].id);
+                          },
+                          icon: Icon(
+                            Icons.delete,
+                            color: Theme.of(context).errorColor,
+                          ),
+                        ),
                 ),
               ),
           itemCount: transactions.length);

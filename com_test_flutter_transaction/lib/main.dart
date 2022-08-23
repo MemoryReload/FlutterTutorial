@@ -122,8 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    final mq = MediaQuery.of(context);
+    final isLandscape = mq.orientation == Orientation.landscape;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -142,10 +142,10 @@ class _MyHomePageState extends State<MyHomePage> {
       title: Text(widget.title),
     );
 
-    final contentHeight = MediaQuery.of(context).size.height -
+    final contentHeight = mq.size.height -
         appBar.preferredSize.height -
-        MediaQuery.of(context).padding.top -
-        MediaQuery.of(context).padding.bottom;
+        mq.padding.top -
+        mq.padding.bottom;
 
     final transactionList = Container(
       height: contentHeight * 0.75,
