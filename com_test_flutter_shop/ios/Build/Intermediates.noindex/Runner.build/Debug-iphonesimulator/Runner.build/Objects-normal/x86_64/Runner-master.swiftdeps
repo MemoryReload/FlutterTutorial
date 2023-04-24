@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "c751c285108ce90d838cacdfa4d0ff782bdc398cb457668a2a2e1046f62caff8"
+build_start_time: [1682264451, 371332168]
+build_end_time: [1682264482, 827486991]
+inputs:
+  "/Users/heping/Documents/GitHub/FlutterTutorial/com_test_flutter_shop/ios/Runner/AppDelegate.swift": [1639410653, 865786790]
