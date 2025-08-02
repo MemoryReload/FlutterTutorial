@@ -1,2 +1,29 @@
-# System files
+# Miscellaneous.
 .DS_Store
+.idea/
+.packages
+.project
+.vscode/
+
+# Flutter generated files.
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.metadata
+
+# Android/iOS/Mac/Windows/Linux generated files.
+**/android/app/src/main/assets/flutter_assets/
+**/android/app/build/
+**/android/build/
+**/ios/Build
+**/ios/Flutter/App.framework
+**/ios/Flutter/engine.framework
+**/ios/Flutter/flutter_assets/
+**/ios/Pods/
+**/ios/Runner/Assets.xcassets/AppIcon.appiconset/
+**/ios/Runner.xcodeproj/project.xcworkspace/
+**/ios/Runner.xcworkspace/
+**/macos/Flutter/ephemeral/
+**/web/
+**/windows/flutter/ephemeral/
+**/linux/flutter/ephemeral/
