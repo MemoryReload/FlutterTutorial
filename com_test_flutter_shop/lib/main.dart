@@ -5,9 +5,10 @@ import './screens/products_overview_screen.dart';
 import './screens/product_detail_screen.dart';
 import './providers/products.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
@@ -16,12 +17,16 @@ class MyApp extends StatelessWidget {
           title: 'MyShop',
           theme: ThemeData(
             primarySwatch: Colors.purple,
-            accentColor: Colors.deepOrange,
+            colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.purple,
+            ).copyWith(
+              secondary: Colors.deepOrange,
+            ),
             fontFamily: 'Lato',
           ),
-          home: ProductsOverviewScreen(),
+          home: const ProductsOverviewScreen(),
           routes: {
-            ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
+            ProductDetailScreen.routeName: (ctx) => const ProductDetailScreen(),
           }),
     );
   }

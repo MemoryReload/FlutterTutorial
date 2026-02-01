@@ -1,4 +1,4 @@
-name: flutter_complete_guide
+name: com_test_flutter_shop
 description: A new Flutter project.
 
 # The following defines the version and build number for your application.
@@ -14,22 +14,23 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.17.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   #provider: ^3.0.0
-  provider: ^4.0.0
+  provider: ^6.0.0
   riverpod: ^2.3.6
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^2.0.0
 
 
 # For information on the generic Dart part of this file, see the

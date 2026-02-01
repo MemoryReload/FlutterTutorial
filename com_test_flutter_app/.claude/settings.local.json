@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter doctor:*)",
+      "Bash(flutter run:*)",
+      "Bash(./gradlew assembleDebug:*)",
+      "Bash(rm:*)"
+    ],
+    "deny": []
+  }
+}

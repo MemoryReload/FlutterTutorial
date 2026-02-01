@@ -46,15 +46,15 @@ class Result extends StatelessWidget {
 
   ButtonStyle makeBtnStyle() {
     return ButtonStyle(
-      foregroundColor: MaterialStateProperty.resolveWith(
+      foregroundColor: WidgetStateProperty.resolveWith(
         (states) {
-          if (states.contains(MaterialState.pressed)) return Colors.pink;
+          if (states.contains(WidgetState.pressed)) return Colors.pink;
           return Colors.blue;
         },
       ),
       splashFactory: NoSplash.splashFactory,
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
-      textStyle: MaterialStateProperty.all(
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
+      textStyle: WidgetStateProperty.all(
           const TextStyle(fontSize: 14, fontWeight: FontWeight.normal)),
     );
   }

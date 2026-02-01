@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 
 import './products.dart';
+import './models/product.dart';
 
 class ProductsManager extends StatelessWidget {
-  final List<Map<String, dynamic>> products;
+  final List<Product> products;
   final Function deleteProduct;
 
-  ProductsManager(this.products, this.deleteProduct);
+  const ProductsManager({Key? key, required this.products, required this.deleteProduct}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Products(products, deleteProduct)
+        // Add a header or other UI elements here if needed
+        Expanded(
+          child: Products(products: products, deleteProduct: deleteProduct),
+        ),
       ],
     );
   }

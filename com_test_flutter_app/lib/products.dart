@@ -1,87 +1,88 @@
 import 'package:flutter/material.dart';
 
+import './models/product.dart';
+
 class Products extends StatelessWidget {
-  final List<Map<String, dynamic>> products;
+  final List<Product> products;
   final Function deleteProduct;
 
-  Products([this.products = const [], this.deleteProduct]);
+  const Products({Key? key, this.products = const [], required this.deleteProduct}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemBuilder: (BuildContext context, int index) => Card(
-              child: Column(
-                children: <Widget>[
-                  Image(
-                    image: AssetImage(products[index]["image"]),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(products[index]["title"],
-                            style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "Oswald")),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 6, vertical: 2.5),
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).accentColor,
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Text(
-                            "\$${products[index]["price"].toString()}",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  DecoratedBox(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                      child: Text("Union Square, Los Angels"),
-                    ),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Colors.grey,
-                            style: BorderStyle.solid,
-                            width: 1),
-                        borderRadius: BorderRadius.circular(5)),
-                  ),
-                  ButtonBar(
-                    alignment: MainAxisAlignment.center,
+    return ListView.builder(
+      itemBuilder: (BuildContext context, int index) => Card(
+            child: Column(
+              children: <Widget>[
+                Image(
+                  image: AssetImage(products[index].image),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  child: Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      IconButton(
-                          icon: Icon(Icons.info),
-                          color: Theme.of(context).accentColor,
-                          onPressed: () =>
-                              Navigator.pushNamed(context, "/products/$index")
-                                  .then((result) {
-                                if (result) {
-                                  deleteProduct(index);
-                                }
-                              })),
-                      IconButton(
-                        icon: Icon(Icons.favorite_border),
-                        color: Theme.of(context).primaryColor,
-                        onPressed: () => {},
-                      )
+                      Text(products[index].title,
+                          style: const TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Oswald")),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 2.5),
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.secondary,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Text(
+                          "\$${products[index].price.toString()}",
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
                     ],
-                  )
-                ],
-              ),
+                  ),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Colors.grey,
+                          style: BorderStyle.solid,
+                          width: 1),
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                    child: Text(products[index].location),
+                  ),
+                ),
+                OverflowBar(
+                  alignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    IconButton(
+                        icon: const Icon(Icons.info),
+                        color: Theme.of(context).colorScheme.secondary,
+                        onPressed: () =>
+                            Navigator.pushNamed(context, "/products/$index")
+                                .then((result) {
+                              if (result == true) {
+                                deleteProduct(index);
+                              }
+                            })),
+                    IconButton(
+                      icon: const Icon(Icons.favorite_border),
+                      color: Theme.of(context).primaryColor,
+                      onPressed: () {
+                        // TODO: Implement favorite functionality
+                      },
+                    )
+                  ],
+                )
+              ],
             ),
-        itemCount: products.length,
-      ).build(context),
+          ),
+      itemCount: products.length,
     );
   }
 }

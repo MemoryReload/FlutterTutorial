@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Quicksand',
             )
             .copyWith(
-              headline6: const TextStyle(
+              titleLarge: const TextStyle(
                 fontFamily: 'OpenSans',
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

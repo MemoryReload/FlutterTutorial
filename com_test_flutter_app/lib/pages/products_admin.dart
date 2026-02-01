@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../models/product.dart';
 import './products_list.dart';
 import './products_edit.dart';
 
 class ProductManagePage extends StatelessWidget {
-  final Function addProduct;
+  final Function(Product) addProduct;
 
-  ProductManagePage(this.addProduct);
+  const ProductManagePage(this.addProduct, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -18,11 +19,11 @@ class ProductManagePage extends StatelessWidget {
             children: <Widget>[
               AppBar(
                 automaticallyImplyLeading: false,
-                title: Text("Choose"),
+                title: const Text("Choose"),
               ),
               ListTile(
-                leading: Icon(Icons.shop),
-                title: Text("Products"),
+                leading: const Icon(Icons.shop),
+                title: const Text("Products"),
                 onTap: () {
                   Navigator.pushReplacementNamed(context, "/products");
                 },
@@ -31,8 +32,8 @@ class ProductManagePage extends StatelessWidget {
           ),
         ),
         appBar: AppBar(
-          title: Text("Product Manage"),
-          bottom: TabBar(
+          title: const Text("Product Manage"),
+          bottom: const TabBar(
             tabs: <Widget>[
               Tab(
                 text: "Create products",
@@ -48,7 +49,7 @@ class ProductManagePage extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             ProductsEditPage(addProduct),
-            ProductsListPage(),
+            const ProductsListPage(),
           ],
         ),
       ),

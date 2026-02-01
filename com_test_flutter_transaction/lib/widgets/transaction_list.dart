@@ -12,7 +12,12 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (transactions.isEmpty) {
-      return const Text("No Transactions!");
+      return Center(
+        child: Text(
+          'No transactions added yet!',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+      );
     } else {
       return ListView.builder(
           itemBuilder: (context, index) => Card(
@@ -34,7 +39,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   title: Text(
                     transactions[index].name,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   subtitle: Text(
                     DateFormat.yMMMd().format(transactions[index].date),
@@ -50,13 +55,13 @@ class TransactionList extends StatelessWidget {
                           ),
                           label: const Text("Delete"),
                           style: ButtonStyle(
-                            elevation: MaterialStateProperty.all(0),
+                            elevation: WidgetStateProperty.all(0),
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.transparent),
-                            foregroundColor: MaterialStateProperty.all(
-                                Theme.of(context).errorColor),
+                                WidgetStateProperty.all(Colors.transparent),
+                            foregroundColor: WidgetStateProperty.all(
+                                Theme.of(context).colorScheme.error),
                             overlayColor:
-                                MaterialStateProperty.all(Colors.transparent),
+                                WidgetStateProperty.all(Colors.transparent),
                           ),
                         )
                       // ElevatedButton(
@@ -76,13 +81,13 @@ class TransactionList extends StatelessWidget {
                       //       ],
                       //     ),
                       //     style: ButtonStyle(
-                      //       elevation: MaterialStateProperty.all(0),
+                      //       elevation: WidgetStateProperty.all(0),
                       //       backgroundColor:
-                      //           MaterialStateProperty.all(Colors.transparent),
-                      //       foregroundColor: MaterialStateProperty.all(
+                      //           WidgetStateProperty.all(Colors.transparent),
+                      //       foregroundColor: WidgetStateProperty.all(
                       //           Theme.of(context).errorColor),
                       //       overlayColor:
-                      //           MaterialStateProperty.all(Colors.transparent),
+                      //           WidgetStateProperty.all(Colors.transparent),
                       //     ),
                       //   )
                       : IconButton(
@@ -91,7 +96,7 @@ class TransactionList extends StatelessWidget {
                           },
                           icon: Icon(
                             Icons.delete,
-                            color: Theme.of(context).errorColor,
+                            color: Theme.of(context).colorScheme.error,
                           ),
                         ),
                 ),

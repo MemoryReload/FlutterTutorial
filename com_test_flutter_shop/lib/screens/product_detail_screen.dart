@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/products.dart';
 
 class ProductDetailScreen extends StatelessWidget {
+  const ProductDetailScreen({super.key});
   // final String title;
   // final double price;
 
@@ -13,7 +14,7 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productId =
-        ModalRoute.of(context).settings.arguments as String; // is the id!
+        ModalRoute.of(context)?.settings.arguments as String; // is the id!
     final loadedProduct = Provider.of<Products>(
       context,
       listen: false,

@@ -3,7 +3,32 @@
     "allow": [
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Bash(ls:*)",
+      "Bash(flutter pub:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(flutter test)",
+      "mcp__chrome-devtools__new_page",
+      "mcp__skill-seeker__list_configs",
+      "Bash(flutter devices:*)",
+      "Bash(flutter run:*)",
+      "mcp__ios-simulator__get_booted_sim_id",
+      "mcp__ios-simulator__open_simulator",
+      "Bash(xcrun simctl list:*)",
+      "Bash(xcrun simctl boot:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)",
+      "Bash(flutter clean:*)",
+      "Bash(flutter build:*)",
+      "Bash(xcodebuild:*)",
+      "Bash(flutter emulators:*)",
+      "Bash(adb devices:*)",
+      "Bash(flutter doctor:*)",
+      "Bash(flutter --version:*)",
+      "Bash(flutter upgrade:*)",
+      "Bash(flutter create:*)",
+      "Bash(git reset:*)",
+      "Bash(git push:*)"
     ],
     "deny": []
   }

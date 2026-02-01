@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import '../models/product.dart';
 
 class ProductsEditPage extends StatefulWidget {
-  final Function addProduct;
-  ProductsEditPage(this.addProduct);
+  final Function(Product) addProduct;
+  const ProductsEditPage(this.addProduct, {Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -11,54 +13,93 @@ class ProductsEditPage extends StatefulWidget {
 }
 
 class _ProductsEditPageState extends State<ProductsEditPage> {
+  final _productNameController = TextEditingController();
+  final _productDescriptionController = TextEditingController();
+  final _productPriceController = TextEditingController();
+
   String _productName = "";
   String _productDescription = "";
   double _productPrice = 0.0;
 
   @override
+  void dispose() {
+    _productNameController.dispose();
+    _productDescriptionController.dispose();
+    _productPriceController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: <Widget>[
             TextField(
+              controller: _productNameController,
               autofocus: true,
-              decoration: InputDecoration(labelText: "Product Name"),
+              decoration: const InputDecoration(labelText: "Product Name"),
               onChanged: (String text) {
-                _productName = text;
+                setState(() {
+                  _productName = text;
+                });
               },
             ),
             TextField(
-                maxLengthEnforced: true,
+                controller: _productDescriptionController,
+                maxLengthEnforcement: MaxLengthEnforcement.enforced,
                 maxLength: 120,
                 maxLines: 3,
-                decoration: InputDecoration(labelText: "Product Description"),
+                decoration: const InputDecoration(labelText: "Product Description"),
                 onChanged: (String text) {
-                  _productDescription = text;
+                  setState(() {
+                    _productDescription = text;
+                  });
                 }),
             TextField(
+                controller: _productPriceController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: "Product Price"),
+                decoration: const InputDecoration(labelText: "Product Price"),
                 onChanged: (String text) {
-                  _productPrice = double.parse(text);
+                  setState(() {
+                    _productPrice = double.tryParse(text) ?? 0.0;
+                  });
                 }),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Row(
               children: <Widget>[
                 Expanded(
-                  child: RaisedButton(
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.white,
-                    child: Text("Save"),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Text("Save"),
                     onPressed: () {
-                      Map<String, dynamic> product = {
-                        "title": _productName,
-                        "description": _productDescription,
-                        "price": _productPrice,
-                        "image": "assets/food.jpg"
-                      };
+                      // Validate inputs
+                      if (_productName.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Please enter a product name")),
+                        );
+                        return;
+                      }
+
+                      if (_productPrice <= 0) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Please enter a valid price")),
+                        );
+                        return;
+                      }
+
+                      final product = Product(
+                        title: _productName,
+                        description: _productDescription,
+                        price: _productPrice,
+                        image: "assets/food.jpg",
+                        location: "Union Square, San Francisco",
+                      );
                       widget.addProduct(product);
                       Navigator.pushReplacementNamed(context, "/products");
                     },

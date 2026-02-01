@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../products_manager.dart';
+import '../models/product.dart';
 
 class ProductsPage extends StatelessWidget {
-
-  final List<Map<String, dynamic>> products;
+  final List<Product> products;
   final Function deleteProduct;
 
-  ProductsPage(this.products,this.deleteProduct);
+  const ProductsPage({Key? key, required this.products, required this.deleteProduct}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,28 +15,32 @@ class ProductsPage extends StatelessWidget {
       drawer: Drawer(
         child: Column(
           children: <Widget>[
-             AppBar(
+            AppBar(
               automaticallyImplyLeading: false,
-              title: Text("Choose"),
+              title: const Text("Choose"),
             ),
             ListTile(
-              leading: Icon(Icons.edit),
-                title: Text("Manage Products"),
-                onTap: () {
-                  Navigator.pushNamed(context, "/admin");
-                }),
+              leading: const Icon(Icons.edit),
+              title: const Text("Manage Products"),
+              onTap: () {
+                Navigator.pushNamed(context, "/admin");
+              },
+            ),
           ],
         ),
       ),
       appBar: AppBar(
-        title: Text("EasyList"),
+        title: const Text("EasyList"),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.favorite),onPressed: ()=>{
-            
-          },)
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            onPressed: () {
+              // TODO: Implement favorite products view
+            },
+          )
         ],
       ),
-      body: ProductsManager(products,deleteProduct),
+      body: ProductsManager(products: products, deleteProduct: deleteProduct),
     );
   }
 }
